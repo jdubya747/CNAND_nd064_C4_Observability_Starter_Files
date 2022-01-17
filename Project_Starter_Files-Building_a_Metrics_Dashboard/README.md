@@ -8,12 +8,12 @@ run `kubectl` command to show the running pods and services for all components. 
 ## Setup the Jaeger and Prometheus source
 Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 *TODO:* Screenshot in image 'grafana_home.png' and doing some to test
-![defaultns](/answer-img/grafana_data_sources.png?raw=true)
-![defaultns](/answer-img/grafana_home.png?raw=true)
+![defaultns](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana_data_sources.png?raw=true)
+![defaultns](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana_home.png?raw=true)
 
 ## Create a Basic Dashboard
 Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
-**Note:** Screenshot in image 'dashboard_prometheus.png' ![defaultns](/answer-img/dashboard_prometheus.png)
+**Note:** Screenshot in image 'dashboard_prometheus.png' ![defaultns](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/dashboard_prometheus.png)
 
 ## Describe SLO/SLI
 *TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
