@@ -2,24 +2,52 @@
 
 ## Verify the monitoring installation
 
-run `kubectl` command to show the running pods and services for all components. Take a screenshot of the oxzvzput and include it here to verify the installation
-*TODO:* Screenshot in image 'kubectl_pods_services.png' dxdxszfhgffgfhfgfg    ![Kubectl](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/kubectl_pods_services.png)
+*TODO:* run kubectl command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
+
+I was unsuccessful in extensive efforts at trying to ket Jaeger to work at all in its own 'obersability' namespace. Consequently I install it in 'default' along with the traced applications. This follows the pattern of other students as recommended by metors on the forum.
+
+Prometheus has been installed in the 'monitoring namspace.
+
+Kubectl out demonstrating this:
+
+[Kubectl](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/kubectl_pods_services.png)
 
 ## Setup the Jaeger and Prometheus source
-Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
-*TODO:* Screenshot in image 'grafana_home.png' and doing some to test
+
+*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+
+Screenshot of Grafano homepage and a second of data sources. Although not shown, both data sources connect without errors.
+
 ![Grafana](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana_data_sources.png?raw=true)
 ![Starter Board](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana_home.png?raw=true)
 
 ## Create a Basic Dashboard
-Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
-**Note:** Screenshot in image 'dashboard_prometheus.png' ![Prometheus](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/dashboard_prometheus.png)
+
+*TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+
+Not on Promethus, but also usinng flask metrics!
+![Prometheus Dashboard](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/dashboard_prometheus.png)
 
 ## Describe SLO/SLI
 *TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
+The SLOs are *monthly uptime* and *request response time*. But they should be more clearly defined. 
+
+The SLO of *monthly uptime* will be that this service should be reliable and available when the user wants to user it. This means that the system is accepting and processing http requests on its endpoints and that The system is returning successful results via status 200.
+
+The SLIs for *monthly uptime* are:
+- The system is available and proceesing http requests on all endpoints 99% of the time over the span of a month
+- The system is returning http 200 status results at least 98% of the time
+
+The SLO of *request response time* will be that this service should be responsive by delivering http results in a timely manner to the user's http requests. This means that The system reliably returns responses within the accepted timeframe and that The system is timely even under increasing load.
+
+The SLIs for *request response time* are:
+- The system returns on average a response time of under 300ms inclusive of all endpoints in the course of a month.
+- The system system maintains this under load. The system can scale to a 1000 requests per minute on vaverage and maintain the above 300ms average response time.
+
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+ I will 
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
