@@ -10,7 +10,7 @@ Prometheus has been installed in the 'monitoring namspace.
 
 Kubectl out demonstrating this:
 
-[Kubectl](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/kubectl_pods_services.png)
+![Kubectl](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/kubectl_pods_services.png)
 
 ## Setup the Jaeger and Prometheus source
 
@@ -33,21 +33,36 @@ Not on Promethus, but also usinng flask metrics!
 
 The SLOs are *monthly uptime* and *request response time*. But they should be more clearly defined. 
 
-The SLO of *monthly uptime* will be that this service should be reliable and available when the user wants to user it. This means that the system is accepting and processing http requests on its endpoints and that The system is returning successful results via status 200.
+The SLO of *monthly uptime* will be that this service should be reliable and available when the user wants to user it. This means that the system is accepting and processing http requests on its endpoints and that the system is returning successful results via status 200.
 
 The SLIs for *monthly uptime* are:
-- The system is available and proceesing http requests on all endpoints 99% of the time over the span of a month
-- The system is returning http 200 status results at least 98% of the time
+- The system is available and proceesing http requests on all endpoints 99% of the time over the span of a month.
+- The system is returning http 200 status results at least 98% of the time over the span of a month.
 
 The SLO of *request response time* will be that this service should be responsive by delivering http results in a timely manner to the user's http requests. This means that The system reliably returns responses within the accepted timeframe and that The system is timely even under increasing load.
 
 The SLIs for *request response time* are:
 - The system returns on average a response time of under 300ms inclusive of all endpoints in the course of a month.
-- The system system maintains this under load. The system can scale to a 1000 requests per minute on vaverage and maintain the above 300ms average response time.
+- The system system maintains this under load. The system can scale to a 1000 requests per minute on average on the month and maintain the above 300ms average response time during that montly span.
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
- I will 
+ My metrics are mainly around the "Four Golden Signals"
+ - Latency
+ - Traffic
+ - Errors
+ - Saturation
+
+ Specifically my metrics will measure:
+ - Average Response Time (latency)
+ - Request time in a percentile (latency)
+ - Request rate (trafffic)
+ - Number of requests (traffic)
+ - Error Rate (errors)
+ - Number of erros (errors)
+ - Uptime (foundational)
+ - CPU utilzation rate and load (saturation)
+ - Memory utilization rate and usage (saturation)
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
@@ -64,8 +79,11 @@ The SLIs for *request response time* are:
 
 ## Report Error
 *TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
-error_screen2
-![Error Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/error_screen2.png)
+
+
+Error Number One:
+
+![Error Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/error_screen1.png)
 
 TROUBLE TICKET
 
@@ -81,6 +99,24 @@ Severity:
 
 Description:
 
+
+Error Number One:
+
+![Error Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/error_screen2.png)
+
+TROUBLE TICKET
+
+Name:
+
+Date:
+
+Subject:
+
+Affected Area:
+
+Severity:
+
+Description:
 
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
