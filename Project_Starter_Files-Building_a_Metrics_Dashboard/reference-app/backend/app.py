@@ -68,12 +68,11 @@ mongo = PyMongo(app)
 #@flask_tracer.trace()
 def backend_homepage():
     with tracer.start_span('hello-span') as span:
-        span.set_tag('message', "Hello World")
+        span.set_tag('Start', "Hello World")
         time.sleep(random.random() * 0.4)
         answer = "Hello World"
+        span.set_tag('End', "Hello World")
     return jsonify(response=answer)
-
-
 
 
 @app.route("/api")
@@ -84,13 +83,14 @@ def backend_api():
     modes = ('normal', '400', '500')
 
     with tracer.start_span('api-span') as span:
+        span.set_tag('Start', "Hbackend_api")
         time.sleep(random.random() * 0.4)
         draw = random.choice(modes)
         draw_again = random.choice(modes)
         if draw == draw_again:
             current_mode = draw
         answer = "something"
-
+        span.set_tag('End', "Hbackend_api")
         if current_mode == '500':
             return ':(', 500
         elif current_mode == '400':
@@ -101,7 +101,8 @@ def backend_api():
 @app.route("/star", methods=["POST"])
 @endpoint_counter
 def backend_star():
-    with tracer.start_span('add star'):
+    with tracer.start_span('add star') as span:
+        span.set_tag('Start', "backend_star")
         #req = request.get_json()
         star = mongo.db.stars
         name = request.get_json['name']
@@ -109,6 +110,7 @@ def backend_star():
         star_id = star.insert({'name': name, 'distance': distance})
         new_star = star.find_one({'_id': star_id })
         output = {'name' : new_star['name'], 'distance' : new_star['distance']}
+        span.set_tag('End', "backend_star")
         return jsonify({'result' : output})     
 
 if __name__ == "__main__":

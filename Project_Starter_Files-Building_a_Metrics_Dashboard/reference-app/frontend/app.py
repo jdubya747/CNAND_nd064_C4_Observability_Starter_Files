@@ -5,7 +5,7 @@ from jaeger_client import Config
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
-
+import time
 
 def init_tracer(service):
     logging.getLogger("").handlers = []
@@ -51,7 +51,9 @@ endpoint_counter = metrics.counter(
 @endpoint_counter
 def frontend_homepage():
     with tracer.start_span('frontend-homepage') as span:
-        span.set_tag('message', 'frontend homepage')
+        span.set_tag('start', 'frontend homepage')
+        time.sleep(1)
+        span.set_tag('end', 'frontend homepage')
     return render_template("main.html")
 
 if __name__ == "__main__":
