@@ -26,6 +26,7 @@ Screenshot of Grafano homepage and a second of data sources. Although not shown,
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
 
 Not on Promethus, but also usinng flask metrics!
+
 ![Prometheus Dashboard](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/dashboard_prometheus.png)
 
 ## Describe SLO/SLI
@@ -66,15 +67,19 @@ The SLIs for *request response time* are:
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+
 ![Uptime Dashboard](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/uptime_dash.png)
 
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+
 ![Jaeger Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger_span.png)
+
 ![Jaeger Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/span_python.png)
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+
 ![Jaeger Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/jaeger_dashboard.png)
 
 ## Report Error
@@ -87,43 +92,77 @@ Error Number One:
 
 TROUBLE TICKET
 
-Name:
+Name: 500 error on backup-service: add-star
 
-Date:
+Date: January 17, 2020
 
-Subject:
+Subject: 500 error from software exception 'object is not subscriptable'
 
-Affected Area:
+Affected Area: app/app.py, line 107, backend_star, name = request.get_json['name']
 
-Severity:
+Severity: Severe
 
-Description:
+Description: Problem with subscripting on the json object. Could be data or code.
 
 
-Error Number One:
+Error Number Two:
 
 ![Error Span](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/error_screen2.png)
 
 TROUBLE TICKET
 
-Name:
+Name: 500 Error on trial-service: get-python-jobs
 
-Date:
+Date: January 17, 2022
 
-Subject:
+Subject: 500 error from software exception 'expecting value'
 
-Affected Area:
+Affected Area: /app/app.py, line 96, in trial_trace
 
-Severity:
+Severity: Severe
 
-Description:
+Description: Problem with getting length of json object.
 
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
+I would further define the SLO to bring more calrity to "uptime" by stating the goal is 'availbility'. In my SLO that will mean:
+- That the system is 'available' because the Services are physically up and running.
+- That the system is 'available' as its CPU and memory is not overload.
+- That the system is 'available' as it is responsive via response times to user requests.
+- That the system is available because its processing requests without error.
+
+To support This SLO, there will be the following SLIs:
+- The system is physically 'up' 99% of the time over the course of a month
+- The system averages below 70% utilization rate for memory and cpu during the monthly period.
+- The system returns on average a response time of under 300ms inclusive of all endpoints in the course of a month.
+- The system is returning http 200 status results at least 98% of the time over the span of a month.
+
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
 
+1. CPU utilazation rate, CPU load, memory utilization rate, memory usage
+2. Uptime for three application services
+3. Request rates per second
+4. Request total per minute
+5. Average response times
+6. Percentile analysis of response times
+7. Error rates per second
+8. Number of errors per second
+
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what 
+graphs are represented in the dashboard. 
+
+Pictured below is final dashboard. It's panels directly coresponding to the numbered list of KPI above.
+
+1. The top row of panels indicate CPU and memory.
+2. The second row corresponds to 'Uptime for three application services'
+3. Panel 'Request Rate (per second)' represents (3)
+4. Panel 'Number of Requests[1m]' repressents (4)
+5. Panel 'Average Response time[30]' represents (5)
+6. Panel 'Request Duration[30][p100]' represents (6)
+7. Panel 'Error Rate(per second) represents (7)
+8. Panel 'Number of Errors(per Minute) represents (8)
+
 ![Final Dashboard](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/final_dashboard.png)
