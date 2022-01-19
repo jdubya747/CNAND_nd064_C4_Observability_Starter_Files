@@ -4,11 +4,11 @@
 
 *TODO:* run kubectl command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
-I was unsuccessful in extensive efforts at trying to ket Jaeger to work at all in its own 'obersability' namespace. Consequently I install it in 'default' along with the traced applications. This follows the pattern of other students as recommended by metors on the forum.
+I was unsuccessful through extensive efforts trying to get Jaeger to work at all in its own 'observability' namespace. Consequently, I installed it in the'default' namespace along with the traced applications. This follows the pattern of other students as recommended by mentors on the forum.
 
 Prometheus has been installed in the 'monitoring namspace.
 
-Kubectl out demonstrating this:
+Kubectl diagram demonstrating this:
 
 ![Kubectl](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/kubectl_pods_services.png)
 
@@ -16,9 +16,10 @@ Kubectl out demonstrating this:
 
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
-Screenshot of Grafano homepage and a second of data sources. Although not shown, both data sources connect without errors.
+Screenshot of Grafana homepage and a second of the data sources. Although not shown, both data sources connect without errors.
 
 ![Grafana](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana_data_sources.png?raw=true)
+
 ![Starter Board](https://github.com/jdubya747/CNAND_nd064_C4_Observability_Starter_Files/blob/master/Project_Starter_Files-Building_a_Metrics_Dashboard/answer-img/grafana_home.png?raw=true)
 
 ## Create a Basic Dashboard
@@ -37,24 +38,24 @@ The SLOs are *monthly uptime* and *request response time*. But they should be mo
 The SLO of *monthly uptime* will be that this service should be reliable and available when the user wants to user it. This means that the system is accepting and processing http requests on its endpoints and that the system is returning successful results via status 200.
 
 The SLIs for *monthly uptime* are:
-- The system is available and proceesing http requests on all endpoints 99% of the time over the span of a month.
-- The system is returning http 200 status results at least 98% of the time over the span of a month.
+- The system is available and processing http requests on all endpoints 99% of the time over the span of a month.
+- The system is returning http 200 results for requests at least 98% of the time over the span of a month.
 
-The SLO of *request response time* will be that this service should be responsive by delivering http results in a timely manner to the user's http requests. This means that The system reliably returns responses within the accepted timeframe and that The system is timely even under increasing load.
+The SLO of *request response time* will be that this service should be responsive by delivering http results in a timely manner to the user's http requests. This means that The system reliably returns responses within the accepted timeframe and that the system is timely even under increasing load.
 
 The SLIs for *request response time* are:
 - The system returns on average a response time of under 300ms inclusive of all endpoints in the course of a month.
-- The system system maintains this under load. The system can scale to a 1000 requests per minute on average on the month and maintain the above 300ms average response time during that montly span.
+- The system maintains this under load. The system can scale to a 1000 requests per minute on average on the month and maintain the above 300ms average response time during that montly span.
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
- My metrics are mainly around the "Four Golden Signals"
+The metrics are mainly around the "Four Golden Signals"
  - Latency
  - Traffic
  - Errors
  - Saturation
 
- Specifically my metrics will measure:
+ The metrics will measure:
  - Average Response Time (latency)
  - Request time in a percentile (latency)
  - Request rate (trafffic)
@@ -126,8 +127,8 @@ Description: Problem with getting length of json object.
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
-I would further define the SLO to bring more calrity to "uptime" by stating the goal is 'availbility'. In my SLO that will mean:
-- That the system is 'available' because the Services are physically up and running.
+I further define the SLO to bring more clarity to "uptime" by stating the goal is 'availbility'. In the SLO that will mean:
+- That the system is 'available' because the services are physically up and running.
 - That the system is 'available' as its CPU and memory is not overload.
 - That the system is 'available' as it is responsive via response times to user requests.
 - That the system is available because its processing requests without error.
@@ -141,10 +142,10 @@ To support This SLO, there will be the following SLIs:
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
 
-1. CPU utilazation rate, CPU load, memory utilization rate, memory usage
-2. Uptime for three application services
+1. CPU utilization rate, CPU load, memory utilization rate, memory usage
+2. Uptime for the three application services
 3. Request rates per second
-4. Request total per minute
+4. Request totals per minute
 5. Average response times
 6. Percentile analysis of response times
 7. Error rates per second
@@ -154,7 +155,7 @@ To support This SLO, there will be the following SLIs:
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what 
 graphs are represented in the dashboard. 
 
-Pictured below is final dashboard. It's panels directly coresponding to the numbered list of KPI above.
+Pictured below is final dashboard. Its panels directly correspond to the numbered list of KPI above.
 
 1. The top row of panels indicate CPU and memory.
 2. The second row corresponds to 'Uptime for three application services'
